@@ -15,10 +15,10 @@ function App() {
   const [loader, setLoader] = useState(true);
 
   useEffect(() => {
-    async function fetchData(name, region) {
+    async function fetchData() {
       setLoader(true);
       try {
-        const response = await axios.get(`${API_URL}${name ? `/name/${name}` : region ? `/region/${region}` : `/all`}`);
+        const response = await axios.get(API_URL+"/all");
 
         setData(response.data);
         setFilteredData(response.data);
@@ -88,6 +88,7 @@ function App() {
                 capital={country.capital}
                 flag={country.flags.svg}
                 region={country.region}
+                alt={country.flags.alt}
               />
             ))
         }
