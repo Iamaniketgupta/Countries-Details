@@ -22,16 +22,13 @@ const CardDetails = () => {
                 setLoader(false);
                 
             } catch (error) {
-                console.error("Error fetching data:", error);
+                // console.error("Error fetching data:", error);
                 setLoader(false); 
             }
         }
         if(urlQuery)
         fetchData();
     }, [urlQuery]);
-
-    console.log(urlQuery)
-    console.log(response)
 
 
     if (loader) {
@@ -50,7 +47,7 @@ const CardDetails = () => {
                     <div className="max-w-[600px] bg-cover rounded-md overflow-clip">
                         <img src={`${response.flags.svg}`} alt={`${response.flags.alt}`} />
                     </div>
-                    <div className="p-3 mx-5 min-w-[300px] leading-10 text-xl font-medium flex-1 flex flex-col justify-center items-center">
+                    <div className="p-3 mx-5 max-w-[600px] min-w-[300px] leading-10 text-xl font-medium flex-1 flex flex-col justify-center items-center">
                         <h1 className="font-bold text-4xl my-5 px-3 text-left w-full ">{response.name.common}</h1>
                         <div className="flex flex-wrap justify-between w-[100%] p-3">
                             <div className="max-w-[100%]">
@@ -63,7 +60,7 @@ const CardDetails = () => {
                                 <hr />
                             </div>
                             <div className="max-w-[100%] ">
-                                <p><b>Border Countries :</b> {response.borders.toLocaleString("en-IN")}</p>
+                                <p><b>Border Countries :</b> {response.borders.toLocaleString("IN")}</p>
                                 <p><b>Top Level Domain :</b> {response.tld}</p>
                                 <p><b>Currency :</b> {response.currencies[Object.keys(response.currencies)[0]].name}</p>
                                 <p><b>Language :</b> {response.languages[Object.keys(response.languages)[0]]}</p>

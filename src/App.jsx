@@ -22,11 +22,12 @@ function App() {
 
         setData(response.data);
         setFilteredData(response.data);
+        setLoader(false);
 
       } catch (error) {
-        console.error("Error fetching data:", error);
+        // console.error("Error fetching data:", error);
+        setLoader(false);
       }
-      setLoader(false);
     }
 
     fetchData();
@@ -86,7 +87,7 @@ function App() {
                 name={country.name.common}
                 pop={country.population}
                 capital={country.capital}
-                flag={country.flags.svg}
+                flag={country.flags.png}
                 region={country.region}
                 alt={country.flags.alt}
               />

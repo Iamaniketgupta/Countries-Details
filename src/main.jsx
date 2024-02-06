@@ -15,7 +15,7 @@ const router = createBrowserRouter([
   {
     path: "/countrydetail",
     element: <CardDetails />,
-    // errorElement: <Error/>
+    errorElement: <Error/>
 
   },
 
