@@ -1,26 +1,41 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { BsFillMoonStarsFill } from "react-icons/bs";
 import { FaSun } from "react-icons/fa";
 const Header = () => {
-    const [mode, setMode] = useState("Light");
 
-    function changeMode() {
-        if (mode === "Dark")
-            setMode("Light");
-        else
-            setMode("Dark");
+        const [darkMode, setDarkMode] = useState(false);
 
-    }
+        useEffect(() => {
+          const savedDarkMode = localStorage.getItem("darkMode");
+          
+            setDarkMode(savedDarkMode);
+          
+        
+        }, []);
+      
+        useEffect(() => {
+          document.documentElement.classList.toggle('dark', darkMode);
+          localStorage.setItem("darkMode", darkMode);
+        }, [darkMode]);
+      
+        const changeMode = () => {
+          setDarkMode(prevMode => !prevMode);
+        };
+    
     return (
-        <header className="flex 
+        <header className="
+        text-slate-800
+        dark:text-white
+        dark:bg-slate-700
+        flex 
         justify-around 
         items-center
-       bg-slate-100
-         h-14 w-full
-        text-lg font-semibold"  >
-            <div className=" p-2">Countries Waale</div>
-            <button className="w-fit h-fit p-2 mx-2" onClick={changeMode}>{mode === "Dark" ? <FaSun />
-                : <BsFillMoonStarsFill />}</button>
+       bg-slate-50
+         h-14 w-[full]
+        text-lg font-bold"  >
+            <div className=" p-2" >Countries Waale</div>
+            <button className="w-fit h-fit p-2 mx-2" onClick={changeMode}>{darkMode ? <FaSun className="text-2xl" />
+                : <BsFillMoonStarsFill className="text-2xl" />}</button>
         </header>
     );
 }

@@ -38,11 +38,12 @@ const CardDetails = () => {
 
     return (
         <>
+          
+            <main className="w-[full] absolute"> 
             <Header />
             <div className="w-[100px] h-fit m-10">
                 <BackButton />
             </div>
-            <main>
                 <div className="flex w-[100%] h-[full] items-center justify-center flex-wrap p-5 m-auto gap-10">
                     <div className="max-w-[600px] bg-cover rounded-md overflow-clip">
                         <img src={`${response.flags.svg}`} alt={`${response.flags.alt}`} />
