@@ -4,19 +4,21 @@ import { FaSun } from "react-icons/fa";
 const Header = () => {
 
         const [darkMode, setDarkMode] = useState(false);
-
-        useEffect(() => {
-          const savedDarkMode = localStorage.getItem("darkMode");
-          
-            setDarkMode(savedDarkMode);
-          
-        
-        }, []);
-      
         useEffect(() => {
           document.documentElement.classList.toggle('dark', darkMode);
           localStorage.setItem("darkMode", darkMode);
         }, [darkMode]);
+
+        useEffect(() => {
+          const savedDarkMode = localStorage.getItem("darkMode");
+          if(savedDarkMode){
+            setDarkMode(savedDarkMode);
+          }
+          else{
+            return;
+          }
+            }, []);
+      
       
         const changeMode = () => {
           setDarkMode(prevMode => !prevMode);
