@@ -6,7 +6,7 @@ const Card = (prop) => {
 
         <div className="dark:bg-slate-700 dark:border-gray-600 rounded-lg m-7 border-2 shadow-lg overflow-hidden max-h-[500px] w-[300px] hover:-translate-y-2 hover:transition ease-in cursor-pointer">
 
-           <NavLink to={"/countrydetail?name="+`${prop.name}`}> 
+           <NavLink to={`/${prop.name}`}> 
            <div className=" w-[100%] h-[180px] bg-contain overflow-clip">
                 <img className="w-full h-full" src={prop.flag} alt={prop.alt} />
                 </div>
