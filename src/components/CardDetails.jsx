@@ -2,13 +2,12 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import Header from "./Header";
 import BackButton from "./BackButton";
-import ErrorPage from './ErrorPage'
 import { useParams } from "react-router-dom";
+import CountriesDetailsShimmer from "./CountriesDetailsShimmer";
 
 const CardDetails = () => {
     const [response, setResponse] = useState([]);
     const [loader, setLoader] = useState(true);
-    const [isFound, setIsFound] = useState(false);
     const [urlQuery, setUrlQuery] = useState('');
 
      
@@ -27,7 +26,6 @@ const CardDetails = () => {
                 setLoader(false);
                 
             } catch (error) {
-                setIsFound(true)
                 setLoader(false); 
             }
         }
@@ -36,15 +34,7 @@ const CardDetails = () => {
     }, [urlQuery]);
 
 
-    if (loader) {
-        return <div className="text-center w-full">Loading...</div>;
-    }
 
-    if(isFound){
-        return(
-            <ErrorPage></ErrorPage>
-        )
-    }
     return (
         <>
           
@@ -53,6 +43,10 @@ const CardDetails = () => {
             <div className="w-[100px] h-fit m-10">
                 <BackButton />
             </div>
+
+            {
+                loader? <CountriesDetailsShimmer/> :
+           
                 <div className="flex w-[full] h-[full] items-center justify-center flex-wrap p-5 m-auto gap-10">
                     <div className="max-w-[600px] bg-cover rounded-md overflow-clip">
                         <img src={`${response.flags.svg}`} alt={`${response.flags.alt}`} />
@@ -78,6 +72,7 @@ const CardDetails = () => {
                         </div>
                     </div>
                 </div>
+                 }
             </main>
         </>
     );

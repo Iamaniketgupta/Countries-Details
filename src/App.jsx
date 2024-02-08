@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import SearchBox from './components/SearchBox';
 import FilterBox from './components/FilterBox';
+import CountriesListShimmer from './components/CountriesListShimmer';
 
 function App() {
   const API_URL = "https://restcountries.com/v3.1";
@@ -67,7 +68,6 @@ function App() {
     <div className='relative *:box-border'>
       <Header></Header>
       <main className='absolute w-full flex flex-wrap justify-center items-center'>
-
         <section className='flex justify-evenly w-full flex-wrap mx-10 items-center'>
           <SearchBox searchByName={searchByName}></SearchBox>
            <FilterBox 
@@ -76,11 +76,13 @@ function App() {
            loader={loader}
            ></FilterBox>
         </section>
-
         {
-          loader ? (<div className='mt-10 text-md'>
-            Loading...
-          </div>) :
+          loader ? 
+          (
+            new Array(20).fill().map((_, idx) => <CountriesListShimmer key={idx} />)
+          )
+           :
+
             filteredData.map((country, index) => (
               <Card
                 key={index}
@@ -93,7 +95,6 @@ function App() {
               />
             ))
         }
-
 
       </main>
     </div>
