@@ -2,16 +2,21 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import Header from "./Header";
 import BackButton from "./BackButton";
+import ErrorPage from './ErrorPage'
+import { useParams } from "react-router-dom";
 
 const CardDetails = () => {
     const [response, setResponse] = useState([]);
     const [loader, setLoader] = useState(true);
+    const [isFound, setIsFound] = useState(false);
     const [urlQuery, setUrlQuery] = useState('');
 
-    useEffect(()=>{
-        const query =new URLSearchParams(window.location.search).get("name");
-        setUrlQuery(query);
-    },[]);
+     
+    const query = useParams();
+    useEffect(() => {
+    setUrlQuery(query.country);
+    },[])
+
     useEffect(() => {
         async function fetchData() {
             try {
@@ -22,7 +27,7 @@ const CardDetails = () => {
                 setLoader(false);
                 
             } catch (error) {
-                // console.error("Error fetching data:", error);
+                setIsFound(true)
                 setLoader(false); 
             }
         }
@@ -35,7 +40,11 @@ const CardDetails = () => {
         return <div className="text-center w-full">Loading...</div>;
     }
 
-
+    if(isFound){
+        return(
+            <ErrorPage></ErrorPage>
+        )
+    }
     return (
         <>
           
