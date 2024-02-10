@@ -6,8 +6,6 @@ const FilterBox = (prop) => {
         <option hidden>Filter By Region</option>
             <option value="all" >All</option>
           {
-            prop.loader ? (<option hidden>Loading...</option>)
-             :
               prop.data.map(country => country.region)
                 .filter((region, index, selfarr) => selfarr.indexOf(region) === index)
                 .map((region, index) => (
