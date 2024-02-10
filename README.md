@@ -1,13 +1,17 @@
 # Desh Videsh - All Countries Details with Flags
 
-![Desh Videsh Screenshot](home_page.png)
-![Desh Videsh Screenshot](detail_page.png)
-
 Desh Videsh is a basic React application that fetches and displays details of countries including their flags using the countries' API. The application includes features like dark mode, responsiveness, filtering, and search functionality.
 
 ## Live Demo
 
 Check out the live demo [here](https://deshvidesh.netlify.app/).
+
+## Preview
+
+![Desh Videsh Screenshot](home_page.png)
+
+![Desh Videsh Screenshot](detail_page.png)
+
 ## Features
 
 - **Dark Mode**: Users can toggle between light and dark modes and store it in Local storage.
@@ -24,20 +28,15 @@ To run the project locally, follow these steps:
 ```bash
    git clone Iamaniketgupta/Countries-Details
 ```
-2. Navigate to the project directory:
-```bash
-cd desh-videsh
-```
-3. Install dependencies:
+2. Install dependencies:
 ```bash
 npm install
 ```
-4. Start the development server:
+3. Start the development server:
 ```bash
 npm run dev
 ```
-
-5. Open your browser and go to `http://localhost:5173` to view the application.
+4. Open your browser and go to `http://localhost:5173` to view the application.
 
 ## Technologies Used
 
