@@ -2,39 +2,14 @@
 import './App.css'
 import Card from './components/Card';
 import Header from './components/Header';
-import { useEffect, useState } from 'react';
-import axios from 'axios';
+import { useContext, useState } from 'react';
+import { DataContext } from './context/DataContext';
 import SearchBox from './components/SearchBox';
 import FilterBox from './components/FilterBox';
 import CountriesListShimmer from './components/CountriesListShimmer';
 
 function App() {
-  const API_URL = "https://restcountries.com/v3.1";
-
-  const [data, setData] = useState([]);
-  const [filteredData, setFilteredData] = useState([]);
-  const [loader, setLoader] = useState(true);
-
-  useEffect(() => {
-    async function fetchData() {
-      setLoader(true);
-      try {
-        const response = await axios.get(API_URL+"/all");
-
-        setData(response.data);
-        setFilteredData(response.data);
-        setLoader(false);
-
-      } catch (error) {
-        // console.error("Error fetching data:", error);
-        setLoader(false);
-      }
-    }
-
-    fetchData();
-
-  }, []);
-
+  const { filteredData, loading, data ,setFilteredData, } = useContext(DataContext);
 
   // filter by region
 
@@ -73,11 +48,10 @@ function App() {
            <FilterBox 
            filterByRegion={filterByRegion}
            data={data}
-           loader={loader}
            ></FilterBox>
         </section>
         {
-          loader ? 
+          loading ? 
           (
             new Array(20).fill().map((_, idx) => <CountriesListShimmer key={idx} />)
           )

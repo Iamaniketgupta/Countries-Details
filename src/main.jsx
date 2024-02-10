@@ -5,6 +5,7 @@ import './index.css'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 import CardDetails from './components/CardDetails.jsx'
 import ErrorPage from './components/ErrorPage.jsx'
+import { DataProvider } from './context/DataContext.jsx'
 const router = createBrowserRouter([
   {
     path: "/",
@@ -21,6 +22,8 @@ const router = createBrowserRouter([
 ]);
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
+    <DataProvider>
      <RouterProvider router={router} />
+     </DataProvider>
   </React.StrictMode>,
 )
