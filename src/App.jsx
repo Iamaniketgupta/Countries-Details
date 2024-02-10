@@ -86,12 +86,7 @@ function App() {
             filteredData.map((country, index) => (
               <Card
                 key={index}
-                name={country.name.common}
-                pop={country.population}
-                capital={country.capital}
-                flag={country.flags.png}
-                region={country.region}
-                alt={country.flags.alt}
+                country={country}
               />
             ))
         }
