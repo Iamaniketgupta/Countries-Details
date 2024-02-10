@@ -18,7 +18,7 @@ const Header = () => {
             <div className=" p-2 flex w-fit 
             flex-nowrap 
             items-center gap-2" >
-              <FcGlobe size={30}/> Desh Videsh 
+              <FcGlobe size={30} /> Desh Videsh 
             </div>
               <Switcher/>
         </header>

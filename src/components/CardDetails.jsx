@@ -1,39 +1,29 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import Header from "./Header";
 import BackButton from "./BackButton";
-import { useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import CountriesDetailsShimmer from "./CountriesDetailsShimmer";
 
 const CardDetails = () => {
     const [response, setResponse] = useState([]);
     const [loader, setLoader] = useState(true);
-    const [urlQuery, setUrlQuery] = useState('');
 
-     
-    const query = useParams();
+    const {state}= useLocation();
+    
     useEffect(() => {
-    setUrlQuery(query.country);
-    },[])
-
-    useEffect(() => {
-        async function fetchData() {
+        function fetchData() {
             try {
                 setLoader(true);                
-                const res = await axios.get(`https://restcountries.com/v3.1/name/${urlQuery}`)
-                
-                setResponse(res.data[0]);
+                setResponse(state);
                 setLoader(false);
                 
             } catch (error) {
                 setLoader(false); 
             }
         }
-        if(urlQuery)
+        if(state)
         fetchData();
-    }, [urlQuery]);
-
-
+}, []);
 
     return (
         <>
@@ -57,17 +47,17 @@ const CardDetails = () => {
                             <div className="max-w-[100%]">
                                 <hr />
                                 <p><b>Official Name :</b> {response.name.official}</p>
-                                <p><b>Population :</b> {response.population.toLocaleString("en-IN")}</p>
+                                {/* <p><b>Population :</b> {response.population.toLocaleString("en-IN")}</p> */}
                                 <p><b>Region :</b> {response.region}</p>
                                 <p><b>Sub Region :</b> {response.subregion}</p>
                                 <p><b>Capital :</b> {response.capital}</p>
                                 <hr />
                             </div>
                             <div className="max-w-[100%] ">
-                                <p><b>Border Countries :</b> {response.borders.toLocaleString("IN")}</p>
                                 <p><b>Top Level Domain :</b> {response.tld}</p>
                                 <p><b>Currency :</b> {response.currencies[Object.keys(response.currencies)[0]].name}</p>
                                 <p><b>Language :</b> {response.languages[Object.keys(response.languages)[0]]}</p>
+                                {/* <p><b>Border Countries :</b> {response.borders.toLocaleString("IN")}</p> */}
                             </div>
                         </div>
                     </div>
